@@ -20,8 +20,8 @@ public class Category {
     @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Category name'")
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Donation> donationList = new ArrayList<>();
+    @ManyToMany(mappedBy="categories")
+    List<Donation> donations = new ArrayList<>();
 
     public Category(Long id, String name) {
         this.id = id;

@@ -11,6 +11,7 @@ import pl.coderslab.charity.service.InstitutionService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,10 +21,11 @@ public class DonationFixture {
     private DonationService donationService;
     private InstitutionService institutionService;
     private CategoryService categoryService;
+
     private List<Donation> donationList = Arrays.asList(
-            new Donation(null,20,null,null,"Nyska","Wrocław","50-555", LocalDate.now(), LocalTime.now(),"Bardzo ciężkie!"),
-            new Donation(null,30,null,null,"Wrocławska","Warszawa","60-666", LocalDate.now(), LocalTime.now(),"Prawie jak nowe"),
-            new Donation(null,40,null,null,"Sienkiewicza","Kraków","70-777", LocalDate.now(), LocalTime.now(),"Brak")
+            new Donation(null,20,new ArrayList<>(),null,"Nyska","Wrocław","50-555", LocalDate.now(), LocalTime.now(),"Bardzo ciężkie!"),
+            new Donation(null,30,new ArrayList<>(),null,"Wrocławska","Warszawa","60-666", LocalDate.now(), LocalTime.now(),"Prawie jak nowe"),
+            new Donation(null,40,new ArrayList<>(),null,"Sienkiewicza","Kraków","70-777", LocalDate.now(), LocalTime.now(),"Brak")
     );
 
     @Autowired
@@ -36,15 +38,26 @@ public class DonationFixture {
         for (Donation donation : donationList){
             donationService.addDonation(donation);
         }
+
         List<Institution> institutionList = institutionService.getAllInstitutions();
         List<Category> categoryList = categoryService.getAllCategories();
+
         Donation donation1 = donationList.get(0);
         Donation donation2 = donationList.get(1);
-        donation1.setCategory(categoryList.get(0));
-        donation2.setCategory(categoryList.get(1));
+        Donation donation3 = donationList.get(2);
+
+        donation1.getCategories().add(categoryList.get(0));
+        donation1.getCategories().add(categoryList.get(1));
+        donation2.getCategories().add(categoryList.get(2));
+        donation3.getCategories().add(categoryList.get(4));
+        donation3.getCategories().add(categoryList.get(2));
+
         donation1.setInstitution(institutionList.get(0));
-        donation2.setInstitution(institutionList.get(0));
+        donation2.setInstitution(institutionList.get(1));
+        donation3.setInstitution(institutionList.get(2));
+
         donationService.addDonation(donation1);
         donationService.addDonation(donation2);
+        donationService.addDonation(donation3);
     }
 }
