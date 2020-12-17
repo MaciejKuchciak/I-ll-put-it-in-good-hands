@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.repository.CategoryRepository;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService{
 
@@ -18,5 +20,10 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public void addCategory(Category category) {
         categoryRepository.save(category);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
 }
