@@ -19,4 +19,14 @@ public class DonationServiceImpl implements DonationService{
     public void addDonation(Donation donation) {
         donationRepository.save(donation);
     }
+
+    @Override
+    public int sumOfDonations() {
+        return donationRepository.countAll();
+    }
+
+    @Override
+    public int quantityOfDonations() {
+        return donationRepository.totalQuantity();
+    }
 }
