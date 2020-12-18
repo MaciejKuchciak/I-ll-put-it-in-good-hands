@@ -23,9 +23,9 @@ public class DonationFixture {
     private CategoryService categoryService;
 
     private List<Donation> donationList = Arrays.asList(
-            new Donation(null,20,new ArrayList<>(),null,"Nyska","Wrocław","50-555", LocalDate.now(), LocalTime.now(),"Bardzo ciężkie!"),
-            new Donation(null,30,new ArrayList<>(),null,"Wrocławska","Warszawa","60-666", LocalDate.now(), LocalTime.now(),"Prawie jak nowe"),
-            new Donation(null,40,new ArrayList<>(),null,"Sienkiewicza","Kraków","70-777", LocalDate.now(), LocalTime.now(),"Brak")
+            new Donation(null,20,new ArrayList<>(),null, 500500500,"Nyska","Wrocław","50-555", LocalDate.now(), LocalTime.now(),"Bardzo ciężkie!"),
+            new Donation(null,30,new ArrayList<>(),null,600600600,"Wrocławska","Warszawa","60-666", LocalDate.now(), LocalTime.now(),"Prawie jak nowe"),
+            new Donation(null,40,new ArrayList<>(),null,600600600,"Sienkiewicza","Kraków","70-777", LocalDate.now(), LocalTime.now(),"Brak")
     );
 
     @Autowired

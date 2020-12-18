@@ -9,4 +9,9 @@ public interface InstitutionService {
     void addInstitution(Institution institution);
 
     List<Institution> getAllInstitutions();
-}
+
+    List<Institution> getInstsWithOddIndex();
+
+    List<Institution> getInstsWithEvenIndex();
+
+    }

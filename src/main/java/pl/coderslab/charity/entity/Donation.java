@@ -31,6 +31,9 @@ public class Donation {
     @ManyToOne
     private Institution institution;
 
+    @Column(columnDefinition="INT NULL COMMENT 'Phone'")
+    private Integer phone;
+
     @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Street'")
     private String street;
 
