@@ -22,7 +22,7 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition="INT NULL COMMENT 'Number of sacks'")
+    @Column(columnDefinition = "INT NULL COMMENT 'Number of sacks'")
     private Integer quantity;
 
     @ManyToMany
@@ -31,16 +31,16 @@ public class Donation {
     @ManyToOne
     private Institution institution;
 
-    @Column(columnDefinition="INT NULL COMMENT 'Phone'")
-    private Integer phone;
+    @Column(columnDefinition = "VARCHAR(255) NULL COMMENT 'Phone'")
+    private String phone;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Street'")
+    @Column(columnDefinition = "VARCHAR(255) NULL COMMENT 'Street'")
     private String street;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'City'")
+    @Column(columnDefinition = "VARCHAR(255) NULL COMMENT 'City'")
     private String city;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Zip code'")
+    @Column(columnDefinition = "VARCHAR(255) NULL COMMENT 'Zip code'")
     private String zipCode;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
