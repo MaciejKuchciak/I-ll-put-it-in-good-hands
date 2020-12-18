@@ -79,45 +79,11 @@
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
 
-            <div class="form-group form-group--checkbox">
+            <div th:each="category: ${categories}" class="form-group form-group--checkbox">
               <label>
-<!--                <input th:field="*{category}" type="checkbox" name="categories" value="clothes-to-use"/>-->
+                <input type="checkbox" name="categories" th:value="${category.id}"/>
                 <span class="checkbox"></span>
-                <span class="description"
-                  >ubrania, które nadają się do ponownego użycia</span
-                >
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-<!--                <input th:field="*{category}" type="checkbox" name="categories" value="clothes-useless"/>-->
-                <span class="checkbox"></span>
-                <span class="description">ubrania, do wyrzucenia</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-<!--                <input th:field="*{category}" type="checkbox" name="categories" value="toys" />-->
-                <span class="checkbox"></span>
-                <span class="description">zabawki</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-<!--                <input th:field="*{category}" type="checkbox" name="categories" value="books" />-->
-                <span class="checkbox"></span>
-                <span class="description">książki</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-<!--                <input th:field="*{category}" type="checkbox" name="categories" value="other" />-->
-                <span class="checkbox"></span>
-                <span class="description">inne</span>
+                <span th:text="${category.name}" class="description"></span>
               </label>
             </div>
 
@@ -149,55 +115,14 @@
           <div data-step="3">
             <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-            <div class="form-group form-group--checkbox">
+            <div th:each="institution: ${institutions}" class="form-group form-group--checkbox">
               <label>
-                <input th:field="*{donation.institution}" type="radio" name="organization" th:value="2" />
+                <input th:field="*{donation.institution}" type="radio" name="organization"
+                       th:value="${institution.id}"/>
                 <span class="checkbox radio"></span>
                 <span class="description">
-                  <div class="title">Fundacja “Bez domu”</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc dla osób nie posiadających miejsca
-                    zamieszkania
-                  </div>
-                </span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input th:field="*{donation.institution}" type="radio" name="organization" th:value="4" />
-                <span class="checkbox radio"></span>
-                <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input th:field="*{donation.institution}" type="radio" name="organization" th:value="1" />
-                <span class="checkbox radio"></span>
-                <span class="description">
-                  <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc dzieciom z ubogich rodzin.
-                  </div>
-                </span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input th:field="*{donation.institution}" type="radio" name="organization" th:value="3" />
-                <span class="checkbox radio"></span>
-                <span class="description">
-                  <div class="title">Fundacja "A kogo"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc w wybudzaniu dzieci ze śpiączki.
+                  <div th:text="${institution.name}" class="title"></div>
+                  <div th:text="${institution.description}" class="subtitle">
                   </div>
                 </span>
               </label>
@@ -226,13 +151,14 @@
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Kod pocztowy <input th:field="*{donation.zipCode}" type="tel" name="postcode" />
+                    Kod pocztowy <input th:field="*{donation.zipCode}" placeholder="00-000" type="tel" name="postcode"/>
                   </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Numer telefonu <input th:field="*{donation.phone}" type="tel" name="phone" />
+                    Numer telefonu <input th:field="*{donation.phone}" placeholder="000-000-000" type="tel"
+                                          name="phone"/>
                   </label>
                 </div>
               </div>
