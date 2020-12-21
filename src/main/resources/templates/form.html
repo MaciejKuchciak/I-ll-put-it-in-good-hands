@@ -99,7 +99,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <input th:field="*{donation.quantity}" type="number" name="bags" step="1" min="1" />
+                <input id="sacksQnty" th:field="*{donation.quantity}" type="number" name="bags" step="1" min="1" />
               </label>
             </div>
 
@@ -130,7 +130,7 @@
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn prev-step">Wstecz</button>
-              <button type="button" class="btn next-step" onclick="return updateConfirmation()">Dalej</button>
+              <button type="button" class="btn next-step">Dalej</button>
             </div>
           </div>
 
@@ -196,9 +196,7 @@
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
-                    <span class="summary--text"
-                      >4 worki ubrań w dobrym stanie dla dzieci</span
-                    >
+                    <span id="sacks" class="summary--text">4 worki ubrań w dobrym stanie dla dzieci</span>
                   </li>
 
                   <li>
@@ -243,10 +241,42 @@
   </body>
 <script type="text/javascript">
   function updateConfirmation(){
+    const sack = document.querySelector("#sacksQnty").value;
+    var categories = document.querySelectorAll('input[name="categories"]:checked');
+    var allCategories = "";
+    var category;
+    for(var i=0; categories[i]; ++i){
+        if(categories[i].value==1){
+          category = "ubrania, które nadają się do ponownego użycia";
+        } else if(categories[i].value==2){
+          category = "ubrania, do wyrzucenia";
+        } else if(categories[i].value==3){
+          category = "zabawki";
+        } else if(categories[i].value==4){
+          category = "książki";
+        } else if(categories[i].value==5){
+          category = "inne";
+        }
+      allCategories += category+"| ";
+    }
+    allCategories = allCategories.substring(0,allCategories.length-2);
+    document.getElementById("sacks").innerHTML = "Liczba worków: "+sack+" zawierające: "+allCategories;
+
     const institution = document.querySelector('input[name="institution"]:checked').value;
-    const preparedInst = "Dla fundacji "+institution;
+    var institutionName;
+    if(institution==1){
+      institutionName = " \"Dbam o Zdrowie\" ";
+    } else if(institution==2){
+      institutionName = " \"Bez domu\" ";
+    } else if(institution==3){
+      institutionName = " \"A kogo\" ";
+    } else if(institution==4){
+      institutionName = " \"Dla dzieci\" ";
+    }
+    const preparedInst = "Dla fundacji "+institutionName;
     document.getElementById("organization").innerHTML = preparedInst;
-        const street = document.querySelector('#street').value;
+
+    const street = document.querySelector('#street').value;
     document.getElementById("road").innerHTML = street;
     const city = document.querySelector('#city').value;
     document.getElementById("place").innerHTML = city;
@@ -259,7 +289,11 @@
     const pickUpTime = document.querySelector('#pick-up-time').value;
     document.getElementById("time").innerHTML = pickUpTime;
     const pickUpComment = document.querySelector('#pick-up-comment').value;
-    document.getElementById("comment").innerHTML = pickUpComment;
+    if (pickUpComment === ""){
+      document.getElementById("comment").innerHTML = "Brak uwag"
+    } else {
+      document.getElementById("comment").innerHTML = pickUpComment;
+    }
   }
 </script>
 </html>
