@@ -9,6 +9,7 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,8 +30,23 @@ public class HomeController {
     public String homeAction(Model model){
         List<Institution> oddInsts = institutionService.getInstsWithOddIndex();
         List<Institution> evenInsts = institutionService.getInstsWithEvenIndex();
-        List<Institution> institutions = institutionService.getAllInstitutions();
-        model.addAttribute("institutions",institutions);
+        ArrayList<ArrayList<Institution>> listOfLists = new ArrayList<>();
+
+        for (int i = 0; i < oddInsts.size(); i++) {
+            ArrayList<Institution> pair = new ArrayList<>();
+            if(oddInsts.size() == evenInsts.size()){
+                pair.add(oddInsts.get(i));
+                pair.add(evenInsts.get(i));
+            } else {
+                pair.add(oddInsts.get(i));
+                if(i < oddInsts.size()-1){
+                    pair.add(evenInsts.get(i));
+                }
+            }
+            listOfLists.add(pair);
+        }
+
+        model.addAttribute("institutions",listOfLists);
         model.addAttribute("oddInsts",oddInsts);
         model.addAttribute("evenInsts",evenInsts);
         int sumOfDonations = donationService.sumOfDonations();

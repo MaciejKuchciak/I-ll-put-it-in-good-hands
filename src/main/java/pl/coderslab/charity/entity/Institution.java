@@ -31,4 +31,13 @@ public class Institution {
         this.name = name;
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Institution{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

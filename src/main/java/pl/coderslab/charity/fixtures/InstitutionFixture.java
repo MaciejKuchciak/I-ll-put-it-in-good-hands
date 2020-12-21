@@ -16,7 +16,9 @@ public class InstitutionFixture {
             new Institution(null,"\"Dbam o Zdrowie\"","Cel i misja: Pomoc dzieciom z ubogich rodzin."),
             new Institution(null,"\"Bez domu\"","Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania."),
             new Institution(null,"\"A kogo\"","Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki."),
-            new Institution(null,"\"Dla dzieci\"","Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.")
+            new Institution(null,"\"Dla dzieci\"","Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej."),
+            new Institution(null,"\"Dla biednego IT\"","Cel i misja: Pomoc dla biednych IT"),
+            new Institution(null,"\"Dla biednego IT\"","Cel i misja: Pomoc dla biednych IT")
     );
 
     @Autowired

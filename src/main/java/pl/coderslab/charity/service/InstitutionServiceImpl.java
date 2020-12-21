@@ -42,7 +42,7 @@ public class InstitutionServiceImpl implements InstitutionService{
     public List<Institution> getInstsWithEvenIndex(){
         List<Institution> institutions= institutionRepository.findAll();
         List<Institution> evenInsts = new ArrayList<>();
-        for (int i = 1; i < institutions.size()-1; i+=2) {
+        for (int i = 1; i <= institutions.size()-1; i+=2) {
             evenInsts.add(institutions.get(i));
         }
         return evenInsts;
