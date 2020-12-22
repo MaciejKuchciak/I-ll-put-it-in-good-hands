@@ -85,11 +85,11 @@
       Możesz sprawdzić czym się zajmują.</p>
     <ul class="help--slides-items">
       <li th:each="institution : ${institutions}">
-        <div class="col">
+        <div th:class="${institution.get(1).name != null}? col : col2">
           <div th:text="${institution.get(0).name}" class="title"></div>
           <div th:text="${institution.get(0).description}" class="subtitle"></div>
         </div>
-        <div class="col">
+        <div th:if="${institution.get(1).name != null}" class="col">
           <div th:text="${institution.get(1).name}" class="title"></div>
           <div th:text="${institution.get(1).description}" class="subtitle"></div>
         </div>

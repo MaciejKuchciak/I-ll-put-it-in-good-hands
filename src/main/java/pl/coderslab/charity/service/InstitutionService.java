@@ -2,6 +2,7 @@ package pl.coderslab.charity.service;
 
 import pl.coderslab.charity.entity.Institution;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface InstitutionService {
@@ -13,5 +14,7 @@ public interface InstitutionService {
     List<Institution> getInstsWithOddIndex();
 
     List<Institution> getInstsWithEvenIndex();
+
+    ArrayList<ArrayList<Institution>> getListOfInstsLists();
 
     }
