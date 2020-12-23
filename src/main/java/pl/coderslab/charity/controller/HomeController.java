@@ -24,10 +24,9 @@ public class HomeController {
         this.institutionService = institutionService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String homeAction(Model model){
         ArrayList<ArrayList<Institution>> listOfLists = institutionService.getListOfInstsLists();
-
         model.addAttribute("institutions",listOfLists);
         int sumOfDonations = donationService.sumOfDonations();
         int quantityOfDonations = donationService.quantityOfDonations();
