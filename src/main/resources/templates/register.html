@@ -72,7 +72,7 @@
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const regexName = /^[a-zA-Z ]+$/;
+    const regexName = /^[a-zA-Z]+$/;
     if(regexEmail.test(email) == false){
       document.getElementById("validEmail").innerHTML = "Niepoprawny adres e-mail";
       returnToPreviousPage();
