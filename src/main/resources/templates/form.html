@@ -262,21 +262,8 @@
     allCategories = allCategories.substring(0,allCategories.length-2);
     document.getElementById("sacks").innerHTML = "Liczba worków: "+sack+" zawierające: "+allCategories;
 
-    const institution = document.querySelector('input[name="institution"]:checked').value;
-    var institutionName;
-    if(institution==1){
-      institutionName = " \"Dbam o Zdrowie\" ";
-    } else if(institution==2){
-      institutionName = " \"Bez domu\" ";
-    } else if(institution==3){
-      institutionName = " \"A kogo\" ";
-    } else if(institution==4){
-      institutionName = " \"Dla dzieci\" ";
-    } else if(institution==5){
-      institutionName = " \"Cztery łapy\" ";
-    }
-    const preparedInst = "Dla fundacji "+institutionName;
-    document.getElementById("organization").innerHTML = preparedInst;
+    const institution = document.querySelector('input[name="institution"]:checked ~ span.description div.title').innerHTML;
+    document.getElementById("organization").innerHTML = institution;
 
     const street = document.querySelector('#street').value;
     document.getElementById("road").innerHTML = street;
