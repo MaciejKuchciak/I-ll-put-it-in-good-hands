@@ -109,8 +109,6 @@
             </div>
           </div>
 
-
-
           <!-- STEP 4 -->
           <div data-step="3">
             <h3>Wybierz organizację, której chcesz pomóc:</h3>
@@ -121,7 +119,7 @@
                        th:value="${institution.id}"/>
                 <span class="checkbox radio"></span>
                 <span class="description">
-                  <div name="institution" th:text="${'Fundacja '+institution.name}" class="title"></div>
+                  <div name="institution" th:text="${institution.name}" class="title"></div>
                   <div th:text="${institution.description}" class="subtitle">
                   </div>
                 </span>
@@ -242,25 +240,17 @@
 <script type="text/javascript">
   function updateConfirmation(){
     const sack = document.querySelector("#sacksQnty").value;
-    var categories = document.querySelectorAll('input[name="categories"]:checked');
-    var allCategories = "";
+    var categories = document.querySelectorAll('input[name="categories"]:checked ~ span.description');
+    var sumOfCategories = "";
     var category;
-    for(var i=0; categories[i]; ++i){
-        if(categories[i].value==1){
-          category = "ubrania, które nadają się do ponownego użycia";
-        } else if(categories[i].value==2){
-          category = "ubrania, do wyrzucenia";
-        } else if(categories[i].value==3){
-          category = "zabawki";
-        } else if(categories[i].value==4){
-          category = "książki";
-        } else if(categories[i].value==5){
-          category = "inne";
-        }
-      allCategories += category+"| ";
+    for(let i=0; categories[i]; ++i){
+      if(categories[i].innerHTML != null){
+        category = categories[i].innerHTML;
+      }
+      sumOfCategories += category+"| ";
     }
-    allCategories = allCategories.substring(0,allCategories.length-2);
-    document.getElementById("sacks").innerHTML = "Liczba worków: "+sack+" zawierające: "+allCategories;
+    sumOfCategories = sumOfCategories.substring(0,sumOfCategories.length-2);
+    document.getElementById("sacks").innerHTML = "Liczba worków: "+sack+" zawierające: "+sumOfCategories;
 
     const institution = document.querySelector('input[name="institution"]:checked ~ span.description div.title').innerHTML;
     document.getElementById("organization").innerHTML = institution;

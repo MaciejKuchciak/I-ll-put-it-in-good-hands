@@ -13,11 +13,11 @@ public class InstitutionFixture {
 
     private InstitutionService institutionService;
     private List<Institution> institutionList = Arrays.asList(
-            new Institution(null,"\"Dbam o Zdrowie\"","Cel i misja: Pomoc dzieciom z ubogich rodzin."),
-            new Institution(null,"\"Bez domu\"","Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania."),
-            new Institution(null,"\"A kogo\"","Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki."),
-            new Institution(null,"\"Dla dzieci\"","Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej."),
-            new Institution(null,"\"Cztery łapy\"","Cel i misja: Pomoc bezpańskim psom i kotom.")
+            new Institution(null,"Fundacja \"Dbam o Zdrowie\"","Cel i misja: Pomoc dzieciom z ubogich rodzin."),
+            new Institution(null,"Fundacja \"Bez domu\"","Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania."),
+            new Institution(null,"Fundacja \"A kogo\"","Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki."),
+            new Institution(null,"Fundacja \"Dla dzieci\"","Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej."),
+            new Institution(null,"Fundacja \"Cztery łapy\"","Cel i misja: Pomoc bezpańskim psom i kotom.")
     );
 
     @Autowired
