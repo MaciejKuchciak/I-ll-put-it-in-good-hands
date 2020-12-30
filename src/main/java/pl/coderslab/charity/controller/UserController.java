@@ -18,7 +18,7 @@ public class UserController {
 
     @PostMapping("register")
     public String registerDone(Model model){
-        model.addAttribute("user",new User());
+        model.addAttribute("user", new User());
         return "redirect:/index";
     }
 

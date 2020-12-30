@@ -22,8 +22,8 @@ public class UserRoles {
     private String role;
     private String description;
 
-//    @OneToMany(fetch = FetchType.EAGER,mappedBy="usersRoles")
-//    private List<User> userList = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="userRoles")
+    private List<User> userList = new ArrayList<>();
 
     @Override
     public String toString() {
