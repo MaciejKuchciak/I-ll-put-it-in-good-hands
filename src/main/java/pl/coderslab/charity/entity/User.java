@@ -6,10 +6,10 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@Entity
 @AllArgsConstructor
-@ToString(exclude = "password")
-@EqualsAndHashCode(of = "username")
+@Entity
+//@EqualsAndHashCode(of = "email")
+//@ToString(exclude = "password")
 @Table(name = "users")
 public class User {
 
@@ -17,35 +17,36 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition="VARCHAR(255) NOT NULL COMMENT 'Username'")
+    @Column(columnDefinition="VARCHAR(255) NOT NULL COMMENT 'Username'", nullable = false)
     private String username;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'E-mail address'")
+    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'E-mail address'", nullable = false)
     private String email;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'First name'")
+    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'First name'", nullable = false)
     private String firstName;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Last name'")
+    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Last name'", nullable = false)
     private String lastName;
 
-    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Password'")
+    @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Password'", nullable = false, unique = true)
     private String password;
 
-    @Column(columnDefinition="TINYINT(1) NULL COMMENT '0 account disabled / 1 account enabled'")
-    private int enable = 1;
+    private String created;
+    private String last_update;
+    private boolean active;
 
     @ManyToOne
     private UserRoles userRoles;
 
-    public User(Long id, String username, String email, String firstName, String lastName, String password, int enable) {
+    public User(Long id, String username, String email, String firstName, String lastName, String password, boolean active) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.enable = enable;
+        this.active = active;
     }
 
     @Override
@@ -57,8 +58,9 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
-                ", enable=" + enable +
+                ", enable=" + active +
                 '}';
     }
 }
+
 
