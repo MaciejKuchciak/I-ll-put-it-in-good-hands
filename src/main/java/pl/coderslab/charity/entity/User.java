@@ -3,6 +3,7 @@ package pl.coderslab.charity.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -25,13 +26,13 @@ public class User {
     private String lastName;
     @Column(columnDefinition="VARCHAR(255) COMMENT 'Password'", nullable = false, unique = true)
     private String password;
-    private String created;
-    private String last_update;
+    private LocalDateTime created;
+    private LocalDateTime last_update;
     private boolean active;
     @ManyToOne
     private UserRoles userRoles;
 
-    public User(Long id, String username, String email, String firstName, String lastName, String password, String created, String last_update, boolean active, UserRoles userRoles) {
+    public User(Long id, String username, String email, String firstName, String lastName, String password, LocalDateTime created, LocalDateTime last_update, boolean active, UserRoles userRoles) {
         this.id = id;
         this.username = username;
         this.email = email;

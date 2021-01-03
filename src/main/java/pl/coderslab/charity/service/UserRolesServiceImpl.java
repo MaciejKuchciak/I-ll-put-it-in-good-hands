@@ -21,4 +21,9 @@ public class UserRolesServiceImpl implements UserRolesService{
     public List<UserRoles> getAllUserRoles() {
         return userRolesRepository.findAll();
     }
+
+    @Override
+    public void addUserRole(UserRoles userRoles) {
+        userRolesRepository.save(userRoles);
+    }
 }

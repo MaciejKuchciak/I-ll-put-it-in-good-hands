@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserRolesService {
 
     List<UserRoles> getAllUserRoles();
+
+    void addUserRole(UserRoles userRoles);
 }

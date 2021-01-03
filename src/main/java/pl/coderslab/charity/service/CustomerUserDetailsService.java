@@ -18,19 +18,18 @@ import java.util.Collections;
 @Slf4j
 public class CustomerUserDetailsService implements UserDetailsService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.debug("Searching for user by username '{}", username);
-        if(!repository.existsByUsername(username)){
+        if(!userRepository.existsByUsername(username)){
             throw new UsernameNotFoundException(String.format("Username %s not found", username));
         }
-        pl.coderslab.charity.entity.User userEntity = repository.getByUsername(username);
+        pl.coderslab.charity.entity.User userEntity = userRepository.getByUsername(username);
         return new User(userEntity.getUsername(),
-                userEntity.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("USER")));
-        //        userEntity.getRoles().stream().
-        //       map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+                userEntity.getPassword(),
+                Collections.singletonList(new SimpleGrantedAuthority("USER")));
     }
 }
