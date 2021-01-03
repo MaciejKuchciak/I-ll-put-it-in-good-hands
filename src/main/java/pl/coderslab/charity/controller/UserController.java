@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.service.UserRolesService;
 import pl.coderslab.charity.service.UserService;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("")
 public class UserController {
 
     private final UserService userService;
+    private final UserRolesService userRolesService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRolesService userRolesService) {
         this.userService = userService;
+        this.userRolesService = userRolesService;
     }
 
     @GetMapping("register")
@@ -28,6 +33,10 @@ public class UserController {
 
     @PostMapping("register")
     public String registerDone(User user){
+        user.setUserRoles(userRolesService.getAllUserRoles().get(0));
+        user.setCreated(LocalDateTime.now());
+        user.setLast_update(LocalDateTime.now());
+        user.setActive(true);
         userService.add(user);
         return "redirect:/login";
     }

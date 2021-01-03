@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class UserRolesFixture {
 
-    private final UserRolesService userRolesService;
+    private UserRolesService userRolesService;
     private List<UserRoles> userRolesList = Arrays.asList(
             new UserRoles(null,"USER","User with access only to content"),
             new UserRoles(null,"ADMIN","User with access to content and configuration panel")

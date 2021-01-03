@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,7 +27,9 @@ public class User {
     private String lastName;
     @Column(columnDefinition="VARCHAR(255) COMMENT 'Password'", nullable = false, unique = true)
     private String password;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:MM:ss")
     private LocalDateTime created;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:MM:ss")
     private LocalDateTime last_update;
     private boolean active;
     @ManyToOne
@@ -57,6 +60,7 @@ public class User {
                 ", created='" + created + '\'' +
                 ", last_update='" + last_update + '\'' +
                 ", active=" + active +
+                ", userRoles=" + userRoles +
                 '}';
     }
 }
