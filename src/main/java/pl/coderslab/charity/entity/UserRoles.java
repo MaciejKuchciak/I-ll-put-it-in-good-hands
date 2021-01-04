@@ -20,7 +20,7 @@ public class UserRoles {
     private String role;
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="userRoles")
+    @OneToMany(mappedBy="userRoles")
     private List<User> userList = new ArrayList<>();
 
 

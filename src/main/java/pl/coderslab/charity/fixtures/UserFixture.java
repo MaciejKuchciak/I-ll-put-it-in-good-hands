@@ -30,9 +30,7 @@ public class UserFixture {
     }
 
     public void loadIntoDB() {
-        for (User user : users) {
-            userService.add(user);
-        }
+
         List<UserRoles> userRolesList = userRolesService.getAllUserRoles();
 
         User user1 = users.get(0);
