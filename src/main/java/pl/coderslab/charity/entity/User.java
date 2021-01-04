@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
+@Getter
 @NoArgsConstructor
 @Entity
 @EqualsAndHashCode(of = "email")

@@ -28,15 +28,14 @@
         </div>
         <div class="form-group">
           <input th:field="*{email}" type="email" id="email" name="email" placeholder="Email" />
-          <span id="validEmail" style="color: red; text-align: center"></span>
         </div>
         <div class="form-group">
           <input th:field="*{firstName}" type="text" id="firstName" name="firstName" placeholder="Imię" />
-          <span id="validFirstName" style="color: red; text-align: center"></span>
+          <span id='firstNameError'></span>
         </div>
         <div class="form-group">
           <input th:field="*{lastName}" type="text" id="lastName" name="lastName" placeholder="Nazwisko" />
-          <span id="validLastName" style="color: red; text-align: center"></span>
+          <span id='lastNameError'></span>
         </div>
         <div class="form-group">
           <input th:field="*{password}" type="password" id="password" name="password" placeholder="Hasło" />
@@ -47,7 +46,7 @@
         </div>
 
         <div class="form-group form-group--buttons">
-          <button class="btn" type="submit" onclick="return checkPasswordAndName(); validate()">Załóż konto</button>
+          <button class="btn" type="submit" onclick="return validate()">Załóż konto</button>
         </div>
       </form>
     </section>
@@ -69,7 +68,29 @@
       $('#passwordError').html('Hasła różnią się od siebie, proszę popraw').css('color', 'red');
   });
 
-  function checkPasswordAndName() {
+  $('#firstName').on('keyup', function() {
+    if($('#firstName').val().includes(0) || $('#firstName').val().includes(1) ||
+            $('#firstName').val().includes(2) || $('#firstName').val().includes(3) ||
+            $('#firstName').val().includes(4) || $('#firstName').val().includes(5) ||
+            $('#firstName').val().includes(6) || $('#firstName').val().includes(7) ||
+            $('#firstName').val().includes(8) || $('#firstName').val().includes(9)) {
+      $('#firstNameError').html('Imię powinno się składać wyłącznie z liter').css('color', 'red');
+    } else
+      $('#firstNameError').html('Imię użytkownika dozwolone').css('color', 'green');
+  })
+
+  $('#lastName').on('keyup', function() {
+    if($('#lastName').val().includes(0) || $('#lastName').val().includes(1) ||
+            $('#lastName').val().includes(2) || $('#lastName').val().includes(3) ||
+            $('#lastName').val().includes(4) || $('#lastName').val().includes(5) ||
+            $('#lastName').val().includes(6) || $('#lastName').val().includes(7) ||
+            $('#lastName').val().includes(8) || $('#lastName').val().includes(9)) {
+      $('#lastNameError').html('Nazwisko powinno się składać wyłącznie z liter').css('color', 'red');
+    } else
+      $('#lastNameError').html('Nazwisko użytkownika dozwolone').css('color', 'green');
+  })
+
+  function validate() {
     var pass1 = document.getElementById("password").value;
     var pass2 = document.getElementById("password2").value;
     var admin = document.getElementById("username").value;
@@ -84,25 +105,25 @@
       returnToPreviousPage();
       return false;
     }
-  }
-
-  function validate(){
     var email = document.getElementById("email").value;
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const regexName = /^[a-zA-Z]+$/;
     if(regexEmail.test(email) == false){
-      document.getElementById("validEmail").innerHTML = "Niepoprawny adres e-mail";
+      alert("Niepoprawny adres e-mail")
       returnToPreviousPage();
+      return false;
     }
     if(regexName.test(firstName) == false){
-      document.getElementById("validFirstName").innerHTML = "Imię składa się wyłącznie z liter";
+      alert("Imię składa się wyłącznie z liter")
       returnToPreviousPage();
+      return false;
     }
     if(regexName.test(lastName) == false){
-      document.getElementById("validLastName").innerHTML = "Nazwisko składa się wyłącznie z liter";
+      alert("Nazwisko składa się wyłącznie z liter")
       returnToPreviousPage();
+      return false;
     }
   }
   function returnToPreviousPage() {
