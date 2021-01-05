@@ -27,13 +27,13 @@ public class UserProfileController {
     public String update(Model model){
         User user = userService.getByEmail(SecurityUtils.username());
         model.addAttribute("userFirstName",user.getFirstName());
-        return "myprofile";
+        return "my-profile";
     }
 
     @PostMapping("myprofile")
     public String updateDone(User user){
         user.setLast_update(LocalDateTime.now());
         userService.add(user);
-        return "myprofile";
+        return "my-profile";
     }
 }

@@ -54,7 +54,7 @@ public class DonationController {
     }
 
     @GetMapping("form-confirmation")
-    public String confirmAction(Model model) {
+    public String confirmAction() {
         return "form-confirmation";
     }
 
