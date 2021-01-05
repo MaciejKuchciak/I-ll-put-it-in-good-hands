@@ -10,4 +10,6 @@ public interface UserService {
 
     void add(User user);
 
+    User getByEmail(String email);
+
 }

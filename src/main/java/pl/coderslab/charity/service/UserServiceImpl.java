@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService{
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
+
+    @Override
+    public User getByEmail(String email) {
+        return userRepository.getByEmail(email);
+    }
 }
