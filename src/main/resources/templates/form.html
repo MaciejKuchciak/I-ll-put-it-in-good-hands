@@ -14,7 +14,7 @@
           <li class="logged-user">
             Witaj <span th:text="${userFirstName}"></span>
             <ul class="dropdown">
-              <li><a href="#">Profil</a></li>
+              <li><a th:href="@{/myprofile}">Profil</a></li>
               <li><a href="#">Moje zbiórki</a></li>
               <li><a th:href="@{/logout}">Wyloguj</a></li>
             </ul>
