@@ -26,7 +26,10 @@ public class UserProfileController {
     @GetMapping("myprofile")
     public String update(Model model){
         User user = userService.getByEmail(SecurityUtils.username());
+        model.addAttribute("user",user);
+        model.addAttribute("username",user.getUsername());
         model.addAttribute("userFirstName",user.getFirstName());
+
         return "my-profile";
     }
 
