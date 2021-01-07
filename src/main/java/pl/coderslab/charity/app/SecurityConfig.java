@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/","/index","/register","/login").permitAll()
                 .antMatchers("/css/*", "/images/*", "/js/*").permitAll()
+                .antMatchers("/admin", "/admin/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -37,9 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/");
-//                .and()
-//                .csrf()
-//                .disable();
+
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{

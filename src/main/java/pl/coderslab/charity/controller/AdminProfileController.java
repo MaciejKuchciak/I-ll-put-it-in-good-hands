@@ -14,14 +14,14 @@ import pl.coderslab.charity.service.UserService;
 import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("")
-public class UserProfileController {
+@RequestMapping("admin")
+public class AdminProfileController {
 
     private final UserService userService;
     private final UserRolesService userRolesService;
 
     @Autowired
-    public UserProfileController(UserService userService, UserRolesService userRolesService) {
+    public AdminProfileController(UserService userService, UserRolesService userRolesService) {
         this.userService = userService;
         this.userRolesService = userRolesService;
     }
@@ -36,15 +36,11 @@ public class UserProfileController {
     }
 
     @PostMapping("myprofile")
-    public String updateDone(User userInput){
-        User user = userService.getByEmail(SecurityUtils.username());
-        //TODO: email and pw to be changed via e-mail
-//        user.setUsername(user.getUsername());
-//        user.setEmail(userInput.getEmail());
-        user.setFirstName(userInput.getFirstName());
-        user.setLastName(userInput.getLastName());
-//        user.setPassword(userInput.getPassword());
+    public String updateDone(User user){
+        user.setUserRoles(userRolesService.getAllUserRoles().get(1));
         user.setLast_update(LocalDateTime.now());
+        user.setCreated(user.getCreated());
+        user.setActive(true);
         userService.add(user);
         return "redirect:/login";
     }
