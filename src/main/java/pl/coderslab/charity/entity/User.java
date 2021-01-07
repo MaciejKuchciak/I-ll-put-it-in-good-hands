@@ -28,7 +28,6 @@ public class User {
     private String lastName;
     @Column(columnDefinition="VARCHAR(255) COMMENT 'Password'", nullable = false, unique = true)
     private String password;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:MM:ss")
     private LocalDateTime created;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:MM:ss")
     private LocalDateTime last_update;

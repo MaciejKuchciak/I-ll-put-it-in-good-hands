@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +27,7 @@
 
 <section class="login-page">
         <h2 style="font-weight:normal">Witaj <span th:text="${username}"></span>, poniżej możesz sprawdzić oraz zmienić swoje dane użytkownika.</h2>
-        <form th:object="${user}" method="post" th:action="@{/my-profile}">
+        <form th:object="${user}" method="post" th:action="@{/myprofile}">
             <div class="form-group">
                 <input th:field="*{username}" type="text" name="username" placeholder="Nazwa użytkownika" id="username"/>
                 <span id='adminError'></span>
@@ -49,10 +49,12 @@
             <div class="form-group">
                 <input type="password" id="password2" name="password2" placeholder="Powtórz hasło"/>
                 <span id='passwordError'></span>
+                <input type="hidden" th:field="*{created}"/>
+                <input type="hidden" th:field="${user.id}"/>
             </div>
 
             <div class="form-group form-group--buttons">
-                <button class="btn" type="submit" onclick="return validate()">Załóż konto</button>
+                <button class="btn" type="submit" onclick="return validate()">Aktualizuj dane</button>
             </div>
         </form>
     </section>
@@ -115,7 +117,7 @@
         var firstName = document.getElementById("firstName").value;
         var lastName = document.getElementById("lastName").value;
         const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const regexName = /^[a-zA-Z]+$/;
+        const regexName = /[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*/;
         if(regexEmail.test(email) == false){
             alert("Niepoprawny adres e-mail")
             returnToPreviousPage();
