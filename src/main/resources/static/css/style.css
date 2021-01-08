@@ -662,6 +662,10 @@ form .form-group--dropdown .dropdown {
   min-height: 38px;
   position: relative;
 }
+.dropdown a:hover {
+  color: #000;
+  font-weight: bold;
+}
 
 /* line 111, scss/modules/_forms.scss */
 form .form-group--dropdown .dropdown.selecting > div {
