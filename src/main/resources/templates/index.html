@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <title>Document</title>
-  <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+  <link th:href="@{/css/style.css}" rel="stylesheet" type='text/css' />
 </head>
 <body>
 <header class="header--main-page">
   <nav class="container container--70">
-    <ul class="nav--actions">
-      <li><a th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
-      <li><a th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-    </ul>
+    <span th:include="fragments/loggedOrNotLogged :: loggedOrNotLogged"></span>
     <span th:include="fragments/header :: header"></span>
   </nav>
   <div class="slogan container container--90">
@@ -97,7 +94,34 @@
     </ul>
   </div>
 </section>
+<button onclick="topFunction()" id="goToTop" title="Go to top">Powrót do góry</button>
 <footer th:include="fragments/footer :: footer">
 </footer>
 </body>
+<script>
+  mybutton = document.getElementById("goToTop");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    }) // For Safari
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    }); // For Chrome, Firefox, IE and Opera
+  }
+</script>
 </html>

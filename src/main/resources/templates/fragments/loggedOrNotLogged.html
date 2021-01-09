@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<span th:fragment="loggedOrNotLogged">
+
+    <ul th:if="${#request.remoteUser == null}" class="nav--actions">
+        <li><a th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
+        <li><a th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+    </ul>
+
+
+    <ul th:if="${#request.remoteUser != null}" class="nav--actions">
+        <li class="logged-user">
+            Witaj <span th:text="${userFirstName}"></span>
+            <ul class="dropdown">
+                <li><a th:href="@{/myprofile}">Profil</a></li>
+                <li><a th:href="@{/form}">Przekaż darowiznę</a></li>
+                <li><a href="#">Moje zbiórki</a></li>
+                <li><a th:href="@{/logout}">Wyloguj</a></li>
+            </ul>
+        </li>
+    </ul>
+
+</span>
+
+</body>
+</html>
