@@ -32,7 +32,7 @@ public class AdminProfileController {
         model.addAttribute("user",user);
         model.addAttribute("username",user.getUsername());
         model.addAttribute("userFirstName",user.getFirstName());
-        return "my-profile";
+        return "admin/my-profile";
     }
 
     @PostMapping("myprofile")
