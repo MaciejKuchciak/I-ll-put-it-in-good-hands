@@ -2,36 +2,34 @@ package pl.coderslab.charity.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.userdetails.User;
 import pl.coderslab.charity.repository.UserRepository;
 
-import java.util.Collections;
-
-@Service
 @RequiredArgsConstructor
 @Slf4j
+@Service("customUserService")
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        log.debug("Searching for user by email '{}'", email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        if (!userRepository.existsByEmail(email)) {
-            throw new UsernameNotFoundException(String.format("Username %s not found", email));
+        log.debug("Searching for user by email '{}'", username);
+
+        if (!userRepository.existsByEmail(username)) {
+            throw new UsernameNotFoundException(String.format("Username %s not found", username));
         }
-        pl.coderslab.charity.entity.User user = userRepository.getByEmail(email);
-        return new User(user.getEmail(),
-                user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getUserRoles().getRole())));
+        final pl.coderslab.charity.entity.User customer = userRepository.getByEmail(username);
+        UserDetails user = User.withUsername(customer.getEmail()).password(customer.getPassword()).authorities(customer.getUserRoles().getRole()).build();
+        return user;
+
     }
 
 }

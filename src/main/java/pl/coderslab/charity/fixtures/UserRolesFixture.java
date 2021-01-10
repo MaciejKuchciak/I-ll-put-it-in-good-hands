@@ -13,8 +13,8 @@ public class UserRolesFixture {
 
     private UserRolesService userRolesService;
     private List<UserRoles> userRolesList = Arrays.asList(
-            new UserRoles(null,"USER","User with access only to content"),
-            new UserRoles(null,"ADMIN","User with access to content and configuration panel")
+            new UserRoles(null,"ROLE_USER","User with access only to content"),
+            new UserRoles(null,"ROLE_ADMIN","User with access to content and configuration panel")
     );
 
     @Autowired
