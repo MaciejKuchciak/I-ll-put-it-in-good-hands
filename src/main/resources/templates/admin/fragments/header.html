@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header">
+    <ul>
+        <li><a th:href="@{/admin}" class="btn btn--without-border active">Start</a></li>
+        <li><a th:href="@{/admin/#whatIsItAbout}" class="btn btn--without-border">O co chodzi?</a></li>
+        <li><a th:href="@{/admin/#aboutUs}" class="btn btn--without-border">O nas</a></li>
+        <li><a th:href="@{/admin/#institutions}" class="btn btn--without-border">Fundacje i organizacje</a></li>
+        <li><a th:href="@{/admin/#contact}" class="btn btn--without-border">Kontakt</a></li>
+    </ul>
+</header>
+</body>
+</html>
