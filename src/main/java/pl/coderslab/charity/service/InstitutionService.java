@@ -17,4 +17,6 @@ public interface InstitutionService {
 
     ArrayList<ArrayList<Institution>> getListOfInstsLists();
 
+    Institution getById(Long id);
+
     }

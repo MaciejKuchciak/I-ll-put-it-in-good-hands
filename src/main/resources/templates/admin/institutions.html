@@ -33,7 +33,7 @@
                 <td th:text="${institution.id}" ></td>
                 <td th:text="${institution.name}" ></td>
                 <td th:text="${institution.description}" ></td>
-                <td><button type="submit" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</button><a th:href="@{/admin/institutions/edit}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
+                <td><button type="submit" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</button><a th:href="@{/admin/institutions/edit(id=${institution.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
             </tr>
             </tbody>
         </table>

@@ -70,4 +70,9 @@ public class InstitutionServiceImpl implements InstitutionService{
         }
         return listOfLists;
     }
+
+    @Override
+    public Institution getById(Long id) {
+        return institutionRepository.getById(id);
+    }
 }

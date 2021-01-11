@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.app.SecurityUtils;
@@ -26,7 +27,7 @@ public class InstitutionFormController {
     }
 
     @GetMapping("institutions/add")
-    public String institutionList(Model model){
+    public String addInstitution(Model model){
         User user = userService.getByEmail(SecurityUtils.username());
         model.addAttribute("userFirstName",user.getFirstName());
         model.addAttribute("institution",new Institution());
@@ -34,7 +35,22 @@ public class InstitutionFormController {
     }
 
     @PostMapping("institutions/add")
-    public String institutionDone(Institution institution){
+    public String institutionAdditionDone(Institution institution){
+        institutionService.addInstitution(institution);
+        return "redirect:/admin/institutions";
+    }
+
+    @GetMapping("institutions/edit")
+    public String editInstitution(Model model, Long id){
+        User user = userService.getByEmail(SecurityUtils.username());
+        model.addAttribute("userFirstName",user.getFirstName());
+        Institution institution = institutionService.getById(id);
+        model.addAttribute("institution",institution);
+        return "admin/edit-institution";
+    }
+
+    @PostMapping("institutions/edit")
+    public String institutionEditDone(Institution institution){
         institutionService.addInstitution(institution);
         return "redirect:/admin/institutions";
     }

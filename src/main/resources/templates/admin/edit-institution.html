@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src ="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type='text/css' />
+</head>
+<body>
+<header>
+    <nav class="container container--70">
+        <span th:include="admin/fragments/loggedOrNotLogged :: loggedOrNotLogged"></span>
+        <span th:include="admin/fragments/header :: header"></span>
+    </nav>
+</header>
+
+<section class="login-page">
+    <h2 style="font-weight:normal">Formularz dodawania nowej instytucji do bazy danych.</h2>
+    <form th:object="${institution}" method="post" th:action="@{/admin/institutions/edit}">
+        <div class="form-group">
+            <input th:field="*{name}" type="text" name="name" placeholder="Nazwa instytucji"/>
+        </div>
+        <div class="form-group">
+            <textarea th:field="*{description}" rows = "10" cols = "80" type="text" name="description" placeholder="Opis instytucji" />
+            <input th:field="${institution.id}" type="hidden">
+        </div>
+
+        <div class="form-group form-group--buttons" style="margin-top: 10px">
+            <button class="btn" type="submit">Edytuj instytucję</button>
+        </div>
+    </form>
+</section>
+<footer th:include="fragments/footer :: footer">
+</footer>
+</body>
+</html>
