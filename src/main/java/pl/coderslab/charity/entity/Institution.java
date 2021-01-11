@@ -23,7 +23,7 @@ public class Institution {
     @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Institution description'")
     private String description;
 
-    @OneToMany(mappedBy="institution")
+    @OneToMany(mappedBy="institution", cascade = CascadeType.REMOVE)
     private List<Donation> donationList = new ArrayList<>();
 
     public Institution(Long id, String name,String description) {
