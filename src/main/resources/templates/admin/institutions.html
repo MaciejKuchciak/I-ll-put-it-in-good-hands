@@ -33,12 +33,12 @@
                 <td th:text="${institution.id}" ></td>
                 <td th:text="${institution.name}" ></td>
                 <td th:text="${institution.description}" ></td>
-                <td><a class="btn" style="font-size: 12px" id="remove">Usuń</a><a class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
+                <td><button type="submit" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</button><a th:href="@{/admin/institutions/edit}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
             </tr>
             </tbody>
         </table>
         <div class="form-group form-group--buttons" style="margin-top: 10px;text-align: center; justify-content: center">
-            <a class="btn">Dodaj instytucję</a>
+            <a th:href="@{/admin/institutions/add}" class="btn">Dodaj instytucję</a>
         </div>
     </div>
 </section>

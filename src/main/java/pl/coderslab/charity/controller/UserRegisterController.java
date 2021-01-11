@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("")
-public class UserController {
+public class UserRegisterController {
 
     private final UserService userService;
     private final UserRolesService userRolesService;
 
     @Autowired
-    public UserController(UserService userService, UserRolesService userRolesService) {
+    public UserRegisterController(UserService userService, UserRolesService userRolesService) {
         this.userService = userService;
         this.userRolesService = userRolesService;
     }

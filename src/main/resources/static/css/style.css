@@ -1891,7 +1891,7 @@ td,th {
   color: black;
   text-align: left;
   border: solid 1px;
-  padding: 1px;
+  padding: 2px 0px 2px 5px;
   font-size: 12px;
 }
 
