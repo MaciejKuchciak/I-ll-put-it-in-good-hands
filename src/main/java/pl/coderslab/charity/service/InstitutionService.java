@@ -19,4 +19,7 @@ public interface InstitutionService {
 
     Institution getById(Long id);
 
-    }
+    void delete(Long id);
+
+
+}
