@@ -73,7 +73,7 @@ public class InstitutionServiceImpl implements InstitutionService{
 
     @Override
     public Institution getById(Long id) {
-        return institutionRepository.getById(id);
+        return institutionRepository.getOne(id);
     }
 
     @Override

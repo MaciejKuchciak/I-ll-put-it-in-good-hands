@@ -12,7 +12,4 @@ public interface InstitutionRepository extends JpaRepository<Institution,Long> {
 
     List<Institution> findAll();
 
-    @Query("Select i from Institution i where i.id = ?1")
-    Institution getById(Long id);
-
 }
