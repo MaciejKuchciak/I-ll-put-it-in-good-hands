@@ -19,7 +19,7 @@
     <h2>Zarządzaj fundacjami</h2>
     <div class="help--slides active" data-id="1">
         <p>Poniżej znajduje się lista fundacji. Możesz dodać, usunąć bądź edytować istniejącą instytucję.</p>
-        <table style="color: black;text-align: left;width:100%;border: solid 1px">
+        <table style="color: black;text-align: left;width:100%;border: solid 1px; margin-bottom: 20px">
             <thead>
             <tr>
                 <th>Id instytucji</th>
@@ -33,10 +33,13 @@
                 <td th:text="${institution.id}" ></td>
                 <td th:text="${institution.name}" ></td>
                 <td th:text="${institution.description}" ></td>
-                <td></td>
+                <td><a class="btn" style="font-size: 12px" id="remove">Usuń</a><a class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
             </tr>
             </tbody>
         </table>
+        <div class="form-group form-group--buttons" style="margin-top: 10px;text-align: center; justify-content: center">
+            <a class="btn">Dodaj instytucję</a>
+        </div>
     </div>
 </section>
 
