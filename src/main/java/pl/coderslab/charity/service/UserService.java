@@ -18,4 +18,6 @@ public interface UserService {
 
     List<User> getAllRegularUsers();
 
+    void delete(Long id);
+
 }

@@ -31,9 +31,9 @@ public class AdminsEditionController {
         return "admin/admins";
     }
 
-//    @GetMapping("institutions/delete")
-//    public String deleteInstitution(Long id){
-//        institutionService.delete(id);
-//        return "redirect:/admin/institutions";
-//    }
+    @GetMapping("adminslist/delete")
+    public String deleteInstitution(Long id){
+        userService.delete(id);
+        return "redirect:/admin/adminslist";
+    }
 }
