@@ -12,4 +12,8 @@ public interface UserService {
 
     User getByEmail(String email);
 
+    List<User> getAllAdmins();
+
+    List<User> getAllRegularUsers();
+
 }

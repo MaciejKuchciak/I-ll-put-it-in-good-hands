@@ -35,4 +35,14 @@ public class UserServiceImpl implements UserService{
     public User getByEmail(String email) {
         return userRepository.getByEmail(email);
     }
+
+    @Override
+    public List<User> getAllAdmins() {
+        return userRepository.findAllByUserRoles("ROLE_ADMIN");
+    }
+
+    @Override
+    public List<User> getAllRegularUsers() {
+        return userRepository.findAllByUserRoles("ROLE_USER");
+    }
 }

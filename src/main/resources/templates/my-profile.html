@@ -27,7 +27,7 @@
 </header>
 
 <section class="login-page">
-        <h2 style="font-weight:normal">Witaj <span th:text="${username}"></span>, poniżej możesz sprawdzić oraz zmienić swoje dane użytkownika.</h2>
+        <h2 style="font-weight:normal">Witaj <span th:text="${username}"></span>, poniżej możesz sprawdzić oraz zmienić swoje dane.</h2>
         <form th:object="${user}" method="post" th:action="@{/myprofile}">
             <div class="form-group">
                 <input th:field="*{username}" type="text" name="username" placeholder="Nazwa użytkownika" id="username"/>

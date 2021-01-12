@@ -16,29 +16,29 @@
     </nav>
 </header>
 <section class="help" id="institutions">
-    <h2>Zarządzaj fundacjami</h2>
+    <h2>Zarządzaj administratorami</h2>
     <div class="help--slides active" data-id="1">
-        <p>Poniżej znajduje się lista fundacji. Możesz dodać, usunąć bądź edytować istniejącą instytucję.</p>
+        <p>Poniżej znajduje się lista administratorów. Możesz dodać, usunąć bądź edytować istniejącego administratora.</p>
         <table style="color: black;text-align: left;width:100%;border: solid 1px; margin-bottom: 20px">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Nazwa instytucji</th>
-                <th>Opis instytucji</th>
+                <th>Nazwa użytkownika</th>
+                <th>E-mail </th>
                 <th>Operacja</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="institution: ${institutions}">
-                <td th:text="${institution.id}" ></td>
-                <td th:text="${institution.name}" ></td>
-                <td th:text="${institution.description}" ></td>
-                <td><a th:href="@{/admin/institutions/delete(id=${institution.id})}" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</a><a th:href="@{/admin/institutions/edit(id=${institution.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
+            <tr th:each="admin: ${admins}">
+                <td th:text="${admin.id}" ></td>
+                <td th:text="${admin.username}" ></td>
+                <td th:text="${admin.email}" ></td>
+                <td><a th:href="@{/admin/adminslist/delete(id=${admin.id})}" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</a><a th:href="@{/admin/adminslist/edit(id=${admin.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
             </tr>
             </tbody>
         </table>
         <div class="form-group form-group--buttons" style="margin-top: 10px;text-align: center; justify-content: center">
-            <a th:href="@{/admin/institutions/add}" class="btn">Dodaj instytucję</a>
+            <a th:href="@{/admin/adminslist/add}" class="btn">Dodaj administratora</a>
         </div>
     </div>
 </section>
