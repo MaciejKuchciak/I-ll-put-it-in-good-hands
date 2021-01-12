@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src ="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type='text/css' />
+</head>
+<body>
+<header>
+    <nav class="container container--70">
+        <span th:include="admin/fragments/loggedOrNotLogged :: loggedOrNotLogged"></span>
+        <span th:include="admin/fragments/header :: header"></span>
+    </nav>
+</header>
+<section class="help" id="institutions">
+    <h2>Zarządzaj użytkownikami</h2>
+    <div class="help--slides active" data-id="1">
+        <p>Poniżej znajduje się lista użytkowników. Możesz dodać, usunąć bądź edytować istniejącego użytkownika.</p>
+        <table style="color: black;text-align: left;width:100%;border: solid 1px; margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa użytkownika</th>
+                <th>E-mail</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Utworzony</th>
+                <th>Ostatnia modyfikacja</th>
+                <th>Aktywny</th>
+                <th>Operacja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.id}" ></td>
+                <td th:text="${user.username}" ></td>
+                <td th:text="${user.email}" ></td>
+                <td th:text="${user.firstName}" ></td>
+                <td th:text="${user.lastName}" ></td>
+                <td th:text="${#temporals.format(user.created, 'yyyy-MM-dd HH:mm:SS')}" ></td>
+                <td th:text="${#temporals.format(user.last_update, 'yyyy-MM-dd HH:mm:SS')}" ></td>
+                <td th:text="${user.active}" ></td>
+                <td><a th:href="@{/admin/userslist/delete(id=${user.id})}" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</a><a th:href="@{/admin/userslist/edit(id=${user.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<footer th:include="fragments/footer :: footer">
+</footer>
+</body>
+</html>
