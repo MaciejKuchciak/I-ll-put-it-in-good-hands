@@ -53,13 +53,6 @@
     </footer>
 </body>
 <script type="text/javascript">
-    $('#username').on('keyup', function() {
-        if($('#username').val().includes('admin')) {
-            $('#adminError').html('Konto ze słowem admin jest zarezerwowane').css('color', 'red');
-        } else
-            $('#adminError').html('Nazwa użytkownika dozwolona').css('color', 'green');
-    })
-
     $('#password, #password2').on('keyup', function () {
         if ($('#password').val() == $('#password2').val()) {
             $('#passwordError').html('Hasło potwierdzone').css('color', 'green');
@@ -96,11 +89,6 @@
         if(pass1 != pass2 )
         {
             alert("Hasła różnią się od siebie")
-            returnToPreviousPage();
-            return false;
-        }
-        if(admin.includes('admin')){
-            alert("Konto ze słowem admin jest zarezerwowane")
             returnToPreviousPage();
             return false;
         }

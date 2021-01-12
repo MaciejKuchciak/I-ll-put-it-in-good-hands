@@ -24,7 +24,12 @@
             <tr>
                 <th>Id</th>
                 <th>Nazwa użytkownika</th>
-                <th>E-mail </th>
+                <th>E-mail</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Utworzony</th>
+                <th>Ostatnia modyfikacja</th>
+                <th>Aktywny</th>
                 <th>Operacja</th>
             </tr>
             </thead>
@@ -33,6 +38,11 @@
                 <td th:text="${admin.id}" ></td>
                 <td th:text="${admin.username}" ></td>
                 <td th:text="${admin.email}" ></td>
+                <td th:text="${admin.firstName}" ></td>
+                <td th:text="${admin.lastName}" ></td>
+                <td th:text="${#temporals.format(admin.created, 'yyyy-MM-dd HH:mm:SS')}" ></td>
+                <td th:text="${#temporals.format(admin.last_update, 'yyyy-MM-dd HH:mm:SS')}" ></td>
+                <td th:text="${admin.active}" ></td>
                 <td><a th:href="@{/admin/adminslist/delete(id=${admin.id})}" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</a><a th:href="@{/admin/adminslist/edit(id=${admin.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
             </tr>
             </tbody>

@@ -38,14 +38,14 @@ public class UserProfileController {
     @PostMapping("myprofile")
     public String updateDone(User userInput){
         User user = userService.getByEmail(SecurityUtils.username());
-        //TODO: email and pw to be changed via e-mail
+        //TODO: email and pw to be changed via e-mail, username should not be in the app
 //        user.setUsername(user.getUsername());
 //        user.setEmail(userInput.getEmail());
         user.setFirstName(userInput.getFirstName());
         user.setLastName(userInput.getLastName());
 //        user.setPassword(userInput.getPassword());
         user.setLast_update(LocalDateTime.now());
-        userService.add(user);
+        userService.edit(user);
         return "redirect:/login";
     }
 }

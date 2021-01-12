@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public void edit(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
     public User getByEmail(String email) {
         return userRepository.getByEmail(email);
     }
