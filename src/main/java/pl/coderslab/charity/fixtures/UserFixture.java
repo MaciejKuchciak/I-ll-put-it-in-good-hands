@@ -19,6 +19,8 @@ public class UserFixture {
     private List<User> users = Arrays.asList(
             new User(null, "Monia200", "monika.dab@hotmail.com", "Monika", "Dąb", "123", LocalDateTime.of(2021, 1, 1, 13, 50, 50), LocalDateTime.of(2020, 1, 1, 12, 0, 0), true, null),
             new User(null, "Mirek19", "miroslaw.zelent@interia.pl", "Mirosław", "Zelent", "123", LocalDateTime.of(2021, 1, 1, 12, 0, 0), LocalDateTime.of(2020, 1, 1, 12, 0, 0), true, null),
+            new User(null, "Janusz12", "janusz.nowak@onet.poczta.pl", "Janusz", "Nowak", "123", LocalDateTime.of(2021, 1, 1, 12, 0, 0), LocalDateTime.of(2020, 1, 1, 12, 0, 0), true, null),
+            new User(null, "Ciasteczko", "misiek@onet.poczta.pl", "Ilona", "Kowalska", "123", LocalDateTime.of(2021, 1, 1, 12, 0, 0), LocalDateTime.of(2020, 1, 1, 12, 0, 0), true, null),
             new User(null, "Maciek", "maciek@onet.pl", "Maciej", "Kuchciak", "admin", LocalDateTime.of(2021, 1, 1, 12, 0, 0), LocalDateTime.of(2020, 1, 1, 12, 0, 0), true, null),
             new User(null, "admin", "admin@admin.pl", "admin", "", "admin", LocalDateTime.of(2021, 1, 1, 12, 0, 0), LocalDateTime.of(2020, 1, 1, 12, 0, 0), true, null)
     );
@@ -37,16 +39,22 @@ public class UserFixture {
         User user2 = users.get(1);
         User user3 = users.get(2);
         User user4 = users.get(3);
+        User user5 = users.get(4);
+        User user6 = users.get(5);
 
         user1.setUserRoles(userRolesList.get(0));
         user2.setUserRoles(userRolesList.get(0));
-        user3.setUserRoles(userRolesList.get(1));
-        user4.setUserRoles(userRolesList.get(1));
+        user3.setUserRoles(userRolesList.get(0));
+        user4.setUserRoles(userRolesList.get(0));
+        user5.setUserRoles(userRolesList.get(1));
+        user6.setUserRoles(userRolesList.get(1));
 
         userService.add(user1);
         userService.add(user2);
         userService.add(user3);
         userService.add(user4);
+        userService.add(user5);
+        userService.add(user6);
     }
 
 }
