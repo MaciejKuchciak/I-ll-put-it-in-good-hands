@@ -14,6 +14,8 @@ public interface UserService {
 
     User getByEmail(String email);
 
+    User getById(Long id);
+
     List<User> getAllAdmins();
 
     List<User> getAllRegularUsers();

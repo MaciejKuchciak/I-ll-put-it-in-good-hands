@@ -17,7 +17,7 @@
 </header>
 
 <section class="login-page">
-    <h2 style="font-weight:normal">Formularz dodawania nowej instytucji do bazy danych.</h2>
+    <h2 style="font-weight:normal">Formularz dodawania nowej instytucji.</h2>
     <form th:object="${institution}" method="post" th:action="@{/admin/institutions/add}">
         <div class="form-group">
             <input th:field="*{name}" type="text" name="name" placeholder="Nazwa instytucji"/>

@@ -17,8 +17,12 @@
 </header>
 
 <section class="login-page">
-    <h2 style="font-weight:normal">Formularz dodawania nowej instytucji do bazy danych.</h2>
+    <h2 style="font-weight:normal">Formularz edycji istniejącej instytucji.</h2>
+    <div class="help--slides active" data-id="1">
+        <p>Poniżej znajdują się dane instytucji: <span th:text="${institution.name}" style="font-weight: bold"></span>.</p>
+    </div>
     <form th:object="${institution}" method="post" th:action="@{/admin/institutions/edit}">
+
         <div class="form-group">
             <input th:field="*{name}" type="text" name="name" placeholder="Nazwa instytucji"/>
         </div>

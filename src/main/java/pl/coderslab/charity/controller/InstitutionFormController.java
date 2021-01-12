@@ -26,7 +26,7 @@ public class InstitutionFormController {
     }
 
     @GetMapping("institutions/add")
-    public String addInstitution(Model model){
+    public String addNewInstitution(Model model){
         User user = userService.getByEmail(SecurityUtils.username());
         model.addAttribute("userFirstName",user.getFirstName());
         model.addAttribute("institution",new Institution());

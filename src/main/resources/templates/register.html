@@ -55,7 +55,7 @@
   </body>
 <script type="text/javascript">
   $('#username').on('keyup', function() {
-    if($('#username').val().includes('admin')) {
+    if($('#username').val().includes('admin') || $('#username').val().includes('Admin')) {
       $('#adminError').html('Konto ze słowem admin jest zarezerwowane').css('color', 'red');
     } else
       $('#adminError').html('Nazwa użytkownika dozwolona').css('color', 'green');
@@ -100,7 +100,7 @@
       returnToPreviousPage();
       return false;
     }
-    if(admin.includes('admin')){
+    if(admin.includes('admin') || admin.includes('Admin')){
       alert("Konto ze słowem admin jest zarezerwowane")
       returnToPreviousPage();
       return false;
@@ -109,7 +109,7 @@
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const regexName = /[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*/;
+    const regexName = /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$/;
     if(regexEmail.test(email) == false){
       alert("Niepoprawny adres e-mail")
       returnToPreviousPage();
