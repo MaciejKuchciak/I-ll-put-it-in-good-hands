@@ -22,4 +22,8 @@ public interface UserService {
 
     void delete(Long id);
 
+    void setActive(Long id);
+
+    void setInactive(Long id);
+
 }

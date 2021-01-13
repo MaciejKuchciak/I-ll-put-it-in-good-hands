@@ -60,4 +60,18 @@ public class UserServiceImpl implements UserService{
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public void setActive(Long id) {
+        User user = userRepository.getOne(id);
+        user.setActive(true);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void setInactive(Long id) {
+        User user = userRepository.getOne(id);
+        user.setActive(false);
+        userRepository.save(user);
+    }
 }

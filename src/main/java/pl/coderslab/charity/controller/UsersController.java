@@ -36,4 +36,16 @@ public class UsersController {
         userService.delete(id);
         return "redirect:/admin/userslist";
     }
+
+    @GetMapping("userslist/setactive")
+    public String activateUser(Long id){
+        userService.setActive(id);
+        return "redirect:/admin/userslist";
+    }
+
+    @GetMapping("userslist/setinactive")
+    public String deactivateUser(Long id){
+        userService.setInactive(id);
+        return "redirect:/admin/userslist";
+    }
 }
