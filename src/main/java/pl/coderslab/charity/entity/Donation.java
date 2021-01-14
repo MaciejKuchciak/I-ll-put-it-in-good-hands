@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,5 +56,13 @@ public class Donation {
 
     @Column(columnDefinition="VARCHAR(255) NULL COMMENT 'Pick up comment'")
     private String pickUpComment;
+
+    @Column(columnDefinition="DATETIME NULL COMMENT 'Creation date'")
+    private LocalDateTime creationDate;
+
+    @Column(columnDefinition="DATETIME NULL COMMENT 'Receiving date'")
+    private LocalDateTime receiveDate;
+
+    private boolean isReceived;
 
 }
