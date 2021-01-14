@@ -2,6 +2,8 @@ package pl.coderslab.charity.service;
 
 import pl.coderslab.charity.entity.Donation;
 
+import java.util.List;
+
 public interface DonationService {
 
     void addDonation(Donation donation);
@@ -9,4 +11,6 @@ public interface DonationService {
     int sumOfDonations();
 
     int quantityOfDonations();
+
+    List<Donation> getAllDonationsByUserId(Long id);
 }

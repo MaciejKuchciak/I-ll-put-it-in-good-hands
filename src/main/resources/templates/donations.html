@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src ="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type='text/css' />
+</head>
+<body>
+<header>
+    <nav class="container container--70">
+        <span th:include="fragments/loggedOrNotLogged :: loggedOrNotLogged"></span>
+        <span th:include="fragments/header :: header"></span>
+    </nav>
+</header>
+<section class="help" id="institutions">
+    <h2>Zarządzaj swoimi darami</h2>
+    <div class="help--slides active" data-id="1">
+        <p>Poniżej znajduje się lista Twoich darów. Aby zmienić status daru na odebrany wejdź w jego szczegóły.</p>
+        <table style="color: black;text-align: left;width:100%;border: solid 1px; margin-bottom: 20px">
+            <thead>
+            <tr>
+                <th>Id daru</th>
+                <th>Ilość</th>
+                <th>Data odbioru</th>
+                <th>Godzina odbioru</th>
+                <th>Komentarz</th>
+                <th>Operacja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="donation: ${donations}">
+                <td th:text="${donation.id}" ></td>
+                <td th:text="${donation.quantity}" ></td>
+                <td th:text="${donation.pickUpDate}" ></td>
+                <td th:text="${donation.pickUpTime}" ></td>
+                <td th:text="${donation.pickUpComment}" ></td>
+                <td><a th:href="@{/donations/details(id=${donation.id})}" class="btn" style="font-size: 12px" id="details">Szczegóły</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<footer th:include="fragments/footer :: footer">
+</footer>
+</body>
+</html>

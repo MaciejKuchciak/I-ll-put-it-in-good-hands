@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Getter
@@ -34,6 +36,8 @@ public class User {
     private boolean active;
     @ManyToOne
     private UserRoles userRoles;
+    @OneToMany(mappedBy="user")
+    private List<Donation> donationList = new ArrayList<>();
 
     public User(Long id, String username, String email, String firstName, String lastName, String password, LocalDateTime created, LocalDateTime last_update, boolean active, UserRoles userRoles) {
         this.id = id;

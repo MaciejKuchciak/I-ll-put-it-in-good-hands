@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("")
-public class DonationController {
+public class DonationFormController {
 
     private final DonationService donationService;
     private final CategoryService categoryService;
@@ -28,7 +28,7 @@ public class DonationController {
     private final UserService userService;
 
     @Autowired
-    public DonationController(DonationService donationService, CategoryService categoryService, InstitutionService institutionService, UserService userService) {
+    public DonationFormController(DonationService donationService, CategoryService categoryService, InstitutionService institutionService, UserService userService) {
         this.donationService = donationService;
         this.categoryService = categoryService;
         this.institutionService = institutionService;

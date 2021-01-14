@@ -31,6 +31,9 @@ public class Donation {
     @ManyToOne
     private Institution institution;
 
+    @ManyToOne
+    private User user;
+
     @Column(columnDefinition = "VARCHAR(255) NULL COMMENT 'Phone'")
     private String phone;
 
