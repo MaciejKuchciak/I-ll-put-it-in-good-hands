@@ -34,4 +34,10 @@ public class DonationsController {
         model.addAttribute("donations",donations);
         return "donations";
     }
+
+    @GetMapping("donations/claimed")
+    public String claimedDonation(Long id){
+        donationService.setAsClaimed(id);
+        return "redirect:/donations";
+    }
 }

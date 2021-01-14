@@ -1882,7 +1882,7 @@ footer .bottom-line--icons a img {
   padding: 0.5em 0.6em;
 }
 
-#goToTop:hover, #edit:hover, #remove:hover, #deactivate:hover, #activate:hover, #details:hover {
+#goToTop:hover, #edit:hover, #remove:hover, #deactivate:hover, #activate:hover, #details:hover, #claim:hover {
   background-color: #f9c910; /* Add a yellow background on hover */
   font-weight: bold;
 }

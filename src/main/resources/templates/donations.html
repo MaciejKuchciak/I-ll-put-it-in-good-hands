@@ -22,22 +22,25 @@
         <table style="color: black;text-align: left;width:100%;border: solid 1px; margin-bottom: 20px">
             <thead>
             <tr>
-                <th>Id daru</th>
+                <th>Data utworzenia</th>
                 <th>Ilość</th>
                 <th>Data odbioru</th>
                 <th>Godzina odbioru</th>
-                <th>Komentarz</th>
+                <th>Odebrano</th>
+                <th>Data odebrania</th>
                 <th>Operacja</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="donation: ${donations}">
-                <td th:text="${donation.id}" ></td>
+                <td th:text="${#temporals.format(donation.creationDate, 'yyyy-MM-dd HH:mm:SS')}" ></td>
                 <td th:text="${donation.quantity}" ></td>
                 <td th:text="${donation.pickUpDate}" ></td>
                 <td th:text="${donation.pickUpTime}" ></td>
-                <td th:text="${donation.pickUpComment}" ></td>
-                <td><a th:href="@{/donations/details(id=${donation.id})}" class="btn" style="font-size: 12px" id="details">Szczegóły</a></td>
+                <td th:text="${donation.isReceived()}" ></td>
+                <td th:text="${#temporals.format(donation.receiveDate, 'yyyy-MM-dd HH:mm:SS')}" ></td>
+                <td><a th:href="@{/donations/details(id=${donation.id})}" class="btn" style="font-size: 12px" id="details">Szczegóły</a>
+                    <a th:if="${donation.isReceived() == false}" th:href="@{/donations/claimed(id=${donation.id})}" class="btn" style="font-size: 12px" id="claim">Potwierdź odbiór</a></td>
             </tr>
             </tbody>
         </table>

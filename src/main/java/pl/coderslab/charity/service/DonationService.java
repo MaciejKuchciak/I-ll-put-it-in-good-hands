@@ -13,4 +13,6 @@ public interface DonationService {
     int quantityOfDonations();
 
     List<Donation> getAllDonationsByUserId(Long id);
+
+    void setAsClaimed(Long id);
 }

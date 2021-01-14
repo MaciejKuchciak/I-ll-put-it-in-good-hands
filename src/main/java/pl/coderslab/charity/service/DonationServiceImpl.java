@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.repository.DonationRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,5 +36,13 @@ public class DonationServiceImpl implements DonationService{
     @Override
     public List<Donation> getAllDonationsByUserId(Long id) {
         return donationRepository.findAllByUserId(id);
+    }
+
+    @Override
+    public void setAsClaimed(Long id) {
+        Donation donation = donationRepository.getOne(id);
+        donation.setReceived(true);
+        donation.setReceiveDate(LocalDateTime.now());
+        donationRepository.save(donation);
     }
 }

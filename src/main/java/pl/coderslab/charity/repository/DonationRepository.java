@@ -16,7 +16,7 @@ public interface DonationRepository extends JpaRepository <Donation, Long>{
     @Query(value = "SELECT COUNT(DISTINCT id) FROM donations", nativeQuery = true)
     int countAll();
 
-    @Query("Select d from Donation d join d.user u where u.id = ?1")
+    @Query("Select distinct d from Donation d join d.user u join d.categories c where u.id = ?1 order by d.isReceived desc, d.receiveDate, d.creationDate")
     List<Donation> findAllByUserId(Long id);
 
 }
