@@ -22,10 +22,10 @@
         <table style="color: black;text-align: left;width:100%;border: solid 1px; margin-bottom: 20px">
             <thead>
             <tr>
-                <th>Data utworzenia</th>
+                <th>Data wpisu</th>
                 <th>Ilość</th>
-                <th>Data odbioru</th>
-                <th>Godzina odbioru</th>
+                <th>Umówiona data odbioru</th>
+                <th>Umówiona godzina odbioru</th>
                 <th>Odebrano</th>
                 <th>Data odebrania</th>
                 <th>Operacja</th>
@@ -40,7 +40,7 @@
                 <td th:text="${donation.isReceived()}" ></td>
                 <td th:text="${#temporals.format(donation.receiveDate, 'yyyy-MM-dd HH:mm:SS')}" ></td>
                 <td><a th:href="@{/donations/details(id=${donation.id})}" class="btn" style="font-size: 12px" id="details">Szczegóły</a>
-                    <a th:if="${donation.isReceived() == false}" th:href="@{/donations/claimed(id=${donation.id})}" class="btn" style="font-size: 12px" id="claim">Potwierdź odbiór</a></td>
+                    <a th:if="${donation.isReceived() == false}" th:href="@{/donations/claimed(id=${donation.id})}" class="btn" style="font-size: 12px;margin-right: 2px; padding-left: 10px; padding-right: 10px" id="claim">Potwierdź odbiór</a></td>
             </tr>
             </tbody>
         </table>
