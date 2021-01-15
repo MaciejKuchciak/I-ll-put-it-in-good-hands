@@ -39,10 +39,11 @@
         </div>
         <div class="form-group">
           <input th:field="*{password}" type="password" id="password" name="password" placeholder="Hasło" />
+          <span id='passwordError'></span>
         </div>
         <div class="form-group">
           <input type="password" id="password2" name="password2" placeholder="Powtórz hasło"/>
-          <span id='passwordError'></span>
+          <span id='passwordConfirmationError'></span>
         </div>
 
         <div class="form-group form-group--buttons">
@@ -57,15 +58,40 @@
   $('#username').on('keyup', function() {
     if($('#username').val().includes('admin') || $('#username').val().includes('Admin')) {
       $('#adminError').html('Konto ze słowem admin jest zarezerwowane').css('color', 'red');
-    } else
+    }
+    if ($('#username').val() == '') {
+      $('#adminError').html('Pole Nazwa użytkownika nie może być puste').css('color', 'red');
+    }
+    else if(!($('#username').val().includes('admin') || $('#username').val().includes('Admin')) && !$('#username').val() == ''){
       $('#adminError').html('Nazwa użytkownika dozwolona').css('color', 'green');
+    }
   })
 
   $('#password, #password2').on('keyup', function () {
+    if($('#password').val() ==''){
+      $('#passwordError').html('Hasło powinno zawierac minimum 8 znaków oraz składać się z przynajmniej jednej litery, cyfry oraz znaku specjalnego').css('color', 'red')
+    }
+    else if($('#password').val().length<8){
+      $('#passwordError').html('Hasło jest krótsze niż 8 znaków').css('color', 'red');
+    }
+    else if (!$('#password').val().match(/([a-z])/) || !$('#password').val().match(/([0-9])/) ){
+      $('#passwordError').html('Hasło nie posiada liter i liczb').css('color', 'red');
+    }
+    else if (!$('#password').val().match(/([A-Z])/)){
+      $('#passwordError').html('Hasło nie posiada wielkiej litery').css('color', 'red');
+    }
+    else if (!$('#password').val().match(/([!,%,&,@,#,$,^,*,?,_,~])/)){
+      $('#passwordError').html('Hasło nie zawiera znaku specjalnego').css('color', 'red');
+    }
+    else {
+      $('#passwordError').html('Wszystko ok').css('color', 'green');
+    }
+
+
     if ($('#password').val() == $('#password2').val()) {
-      $('#passwordError').html('Hasło potwierdzone').css('color', 'green');
+      $('#passwordConfirmationError').html('Hasło potwierdzone').css('color', 'green');
     } else
-      $('#passwordError').html('Hasła różnią się od siebie, proszę popraw').css('color', 'red');
+      $('#passwordConfirmationError').html('Hasła różnią się od siebie, proszę popraw').css('color', 'red');
   });
 
   $('#firstName').on('keyup', function() {
@@ -93,35 +119,76 @@
   function validate() {
     var pass1 = document.getElementById("password").value;
     var pass2 = document.getElementById("password2").value;
-    var admin = document.getElementById("username").value;
-    if(pass1 != pass2 )
-    {
-      alert("Hasła różnią się od siebie")
-      returnToPreviousPage();
-      return false;
-    }
-    if(admin.includes('admin') || admin.includes('Admin')){
-      alert("Konto ze słowem admin jest zarezerwowane")
-      returnToPreviousPage();
-      return false;
-    }
+    var username = document.getElementById("username").value;
     var email = document.getElementById("email").value;
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
+
+    if(pass1 != pass2 )
+    {
+      alert("Hasło i potwierdzenie hasła różnią się od siebie.")
+      returnToPreviousPage();
+      return false;
+    }
+    if(pass1.length<8){
+      alert("Hasło musi składać się z minimalnie 8 znaków.")
+      returnToPreviousPage();
+      return false;
+    }
+    if(!pass1.match(/([a-z])/) || !pass1.match(/([0-9])/)){
+      alert("Hasło nie posiada żadnej litery lub liczby")
+      returnToPreviousPage();
+      return false;
+    }
+    if(!pass1.match(/([A-Z])/)){
+      alert("Hasło nie posiada wielkiej litery")
+      returnToPreviousPage();
+      return false;
+    }
+    if(!pass1.match(/([!,%,&,@,#,$,^,*,?,_,~])/)){
+      alert("Hasło nie posiada znaku specjalnego")
+      returnToPreviousPage();
+      return false;
+    }
+    if(username == ""){
+      alert("Pole Nazwa użytkownika nie może być puste")
+      returnToPreviousPage();
+      return false;
+    }
+    if(firstName == ""){
+      alert("Pole Imię nie może być puste")
+      returnToPreviousPage();
+      return false;
+    }
+    if(lastName == ""){
+      alert("Pole Nazwisko nie może być puste")
+      returnToPreviousPage();
+      return false;
+    }
+    if(email == ""){
+      alert("Pole Email nie może być puste")
+      returnToPreviousPage();
+      return false;
+    }
+    if(username.includes('admin') || username.includes('Admin')){
+      alert("Konto ze słowem admin jest zarezerwowane.")
+      returnToPreviousPage();
+      return false;
+    }
     const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const regexName = /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$/;
     if(regexEmail.test(email) == false){
-      alert("Niepoprawny adres e-mail")
+      alert("Niepoprawny adres e-mail.")
       returnToPreviousPage();
       return false;
     }
     if(regexName.test(firstName) == false){
-      alert("Imię składa się wyłącznie z liter")
+      alert("Imię musi składać się wyłącznie z liter.")
       returnToPreviousPage();
       return false;
     }
     if(regexName.test(lastName) == false){
-      alert("Nazwisko składa się wyłącznie z liter")
+      alert("Nazwisko musi składać się wyłącznie z liter.")
       returnToPreviousPage();
       return false;
     }
