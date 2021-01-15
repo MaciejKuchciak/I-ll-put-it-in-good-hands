@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type='text/css'/>
 </head>
 <body>
+<header>
+    <nav class="container container--70">
+        <span th:include="fragments/loggedOrNotLogged :: loggedOrNotLogged"></span>
+        <span th:include="fragments/header :: header"></span>
+    </nav>
+</header>
 
+<section class="form--steps" style="margin-top: 30px">
+
+    <div class="form--steps-container">
+
+        <form>
+            <div data-step="1" class="active">
+                <h3>Szczegóły Twojej darowizny</h3>
+
+                <div class="summary">
+                    <div class="form-section">
+                        <h4 th:text="'Złożyłeś/aś zlecenia dnia '+${#temporals.format(donation.creationDate, 'dd-MM-yyyy')}+' o '+${#temporals.format(donation.creationDate, 'HH:mm')}+' na oddanie:'"></h4>
+                        <ul>
+                            <li>
+                                <span class="icon icon-bag"></span>
+                                <span th:utext="'Worki w ilości: '+${donation.quantity}+', zawierające:&amp;nbsp;'" class="summary--text"></span>
+                                <tr th:each="a,i : *{donation.categories}"  th:text="${!i.last} ? ${a.name} + '|' : ${a.name}">
+<!--                                    <td th:utext="'&amp;nbsp;'+${category.name}"></td>-->
+                                </tr>
+                            </li>
+
+
+                            </li>
+                            <li>
+                                <span class="icon icon-hand"></span>
+                                <span th:text="'Na rzecz: '+${donation.institution.name}" class="summary--text"></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="form-section form-section--columns">
+                        <div class="form-section--column">
+                            <h4>Adres odbioru:</h4>
+                            <ul>
+                                <li th:text="${donation.street}"></li>
+                                <li th:text="${donation.city}"></li>
+                                <li th:text="${donation.zipCode}"></li>
+                                <li th:text="${donation.phone}"></li>
+                            </ul>
+                        </div>
+
+                        <div class="form-section--column">
+                            <h4>Termin odbioru przez kuriera:</h4>
+                            <ul>
+                                <li th:text="${donation.pickUpDate}"></li>
+                                <li th:text="${donation.pickUpTime}"></li>
+                                <h4>Uwagi do kuriera:</h4>
+                                <li th:text="${donation.pickUpComment}"></li>
+                            </ul>
+                        </div>
+
+                        <div class="form-section--column">
+                            <h4>Czy dar został odebrany:</h4>
+                            <ul>
+                                <li th:if="${donation.isReceived()} == false" th:text="nie"></li>
+                                <li th:if="${donation.isReceived()} == true" th:text="tak"></li>
+                                <h4>Data odbioru:</h4>
+                                <li th:text="${donation.receiveDate}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group form-group--buttons">
+                    <a th:href="@{/donations}" class="btn">Powrót</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<footer th:include="fragments/footer :: footer">
+</footer>
 </body>
 </html>

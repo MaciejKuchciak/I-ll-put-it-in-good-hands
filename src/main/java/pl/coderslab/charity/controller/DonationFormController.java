@@ -16,6 +16,7 @@ import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -49,12 +50,17 @@ public class DonationFormController {
 
     @PostMapping("/form")
     public String submitAction(Donation donation){
+        User user = userService.getByEmail(SecurityUtils.username());
+        donation.setUser(user);
+        donation.setCreationDate(LocalDateTime.now());
         donationService.addDonation(donation);
         return "redirect:/form-confirmation";
     }
 
     @GetMapping("form-confirmation")
-    public String confirmAction() {
+    public String confirmAction(Model model) {
+        User user = userService.getByEmail(SecurityUtils.username());
+        model.addAttribute("userFirstName",user.getFirstName());
         return "form-confirmation";
     }
 

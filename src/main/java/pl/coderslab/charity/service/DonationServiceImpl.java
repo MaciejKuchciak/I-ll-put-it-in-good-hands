@@ -45,4 +45,9 @@ public class DonationServiceImpl implements DonationService{
         donation.setReceiveDate(LocalDateTime.now());
         donationRepository.save(donation);
     }
+
+    @Override
+    public Donation getById(Long id) {
+        return donationRepository.getOne(id);
+    }
 }
