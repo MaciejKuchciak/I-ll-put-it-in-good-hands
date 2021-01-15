@@ -43,7 +43,7 @@
                 <td th:text="${#temporals.format(admin.created, 'yyyy-MM-dd HH:mm:SS')}" ></td>
                 <td th:text="${#temporals.format(admin.last_update, 'yyyy-MM-dd HH:mm:SS')}" ></td>
                 <td th:text="${admin.active}" ></td>
-                <td><a th:href="@{/admin/adminslist/delete(id=${admin.id})}" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</a><a th:href="@{/admin/adminslist/edit(id=${admin.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
+                <td><a th:href="@{/admin/adminslist/delete(id=${admin.id})}" th:onclick="javascript:validateSelfRemoval([[${admin.id}]]);" class="btn" style="font-size: 12px;margin-right: 2px" id="remove">Usuń</a><a th:href="@{/admin/adminslist/edit(id=${admin.id})}" class="btn" style="font-size: 12px" id="edit">Edytuj</a></td>
             </tr>
             </tbody>
         </table>
@@ -53,7 +53,24 @@
     </div>
 </section>
 
+<span th:text="${loggedUserId}" id="loggedUser" style="display: none;"></span>
+
 <footer th:include="fragments/footer :: footer">
 </footer>
 </body>
+<script type="text/javascript">
+    function validateSelfRemoval(id) {
+        var loggedUser = document.getElementById("loggedUser").innerText;
+        console.log(id)
+        console.log(loggedUser)
+        if(id == loggedUser){
+            alert("Nie możesz usunąć samego siebie!")
+            returnToPreviousPage();
+            return false;
+        }
+    }
+    function returnToPreviousPage(){
+        window.history.forward(-1);
+    }
+</script>
 </html>

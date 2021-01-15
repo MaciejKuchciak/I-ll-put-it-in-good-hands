@@ -26,6 +26,7 @@ public class AdminsController {
     public String adminList(Model model){
         User user = userService.getByEmail(SecurityUtils.username());
         model.addAttribute("userFirstName", user.getFirstName());
+        model.addAttribute("loggedUserId", user.getId());
         List<User> admins = userService.getAllAdmins();
         model.addAttribute("admins",admins);
         return "admin/admins";
@@ -33,7 +34,10 @@ public class AdminsController {
 
     @GetMapping("adminslist/delete")
     public String deleteAdmin(Long id){
-        userService.delete(id);
+        User user = userService.getByEmail(SecurityUtils.username());
+        if(user.getId() != id){
+            userService.delete(id);
+        }
         return "redirect:/admin/adminslist";
     }
 }
