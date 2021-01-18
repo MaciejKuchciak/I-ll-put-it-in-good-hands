@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+</head>
+<body>
+<header>
+    <nav class="container container--70">
+        <ul class="nav--actions">
+            <li><a th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        </ul>
+        <span th:include="fragments/header :: header"></span>
+    </nav>
+</header>
+
+<section class="help" id="institutions">
+    <h2>Potwierdzenie rejestracji</h2>
+    <div class="help--slides active" data-id="1">
+        <p>Na podany przez Ciebie adres e-mail została wysłana wiadomość z potwierdzeniem rejstracji.</p>
+
+        <div class="form-group form-group--buttons" style="margin-top: 10px;text-align: center; justify-content: center">
+            <a th:href="@{/}" class="btn" id="goBack">Powrót do strony głównej</a>
+        </div>
+    </div>
+</section>
+
+<footer th:include="fragments/footer :: footer">
+</footer>
+</body>
+</html>
