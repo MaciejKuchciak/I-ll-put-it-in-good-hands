@@ -19,13 +19,11 @@ import java.time.LocalDateTime;
 public class UserRegisterController {
 
     private final UserService userService;
-    private final UserRolesService userRolesService;
     private final SendEmailService sendEmailService;
 
     @Autowired
-    public UserRegisterController(UserService userService, UserRolesService userRolesService, SendEmailService sendEmailService) {
+    public UserRegisterController(UserService userService, SendEmailService sendEmailService) {
         this.userService = userService;
-        this.userRolesService = userRolesService;
         this.sendEmailService = sendEmailService;
     }
 
@@ -38,10 +36,6 @@ public class UserRegisterController {
     @PostMapping("register")
     public String registerDone(User user){
         sendEmailService.sendEmail(user.getEmail(),"Witamy na portalu \"Oddam w dobre ręce\".","Potwierdzenie rejestracji");
-        user.setUserRoles(userRolesService.getAllUserRoles().get(0));
-        user.setCreated(LocalDateTime.now());
-        user.setLast_update(LocalDateTime.now());
-        user.setActive(true);
         userService.add(user);
         return "redirect:/registerconfirmation";
     }

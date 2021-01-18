@@ -18,12 +18,10 @@ import java.time.LocalDateTime;
 public class UserFormController {
 
     private final UserService userService;
-    private final UserRolesService userRolesService;
 
     @Autowired
-    public UserFormController(UserService userService, UserRolesService userRolesService) {
+    public UserFormController(UserService userService) {
         this.userService = userService;
-        this.userRolesService = userRolesService;
     }
 
     @GetMapping("userslist/edit")
@@ -38,14 +36,7 @@ public class UserFormController {
     @PostMapping("userslist/edit")
     public String userEditDone(User userInput){
         User user = userService.getById(userInput.getId());
-        //TODO: email and pw to be changed via e-mail, username should not be in the app
-//        user.setUsername(user.getUsername());
-//        user.setEmail(userInput.getEmail());
-        user.setFirstName(userInput.getFirstName());
-        user.setLastName(userInput.getLastName());
-//        user.setPassword(userInput.getPassword());
-        user.setLast_update(LocalDateTime.now());
-        userService.edit(user);
+        userService.edit(user,userInput);
         return "redirect:/admin/userslist";
     }
 

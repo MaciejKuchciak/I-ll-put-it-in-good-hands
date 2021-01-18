@@ -38,8 +38,9 @@ public class User {
     private UserRoles userRoles;
     @OneToMany(mappedBy="user")
     private List<Donation> donationList = new ArrayList<>();
+    private String uuidToken;
 
-    public User(Long id, String username, String email, String firstName, String lastName, String password, LocalDateTime created, LocalDateTime last_update, boolean active, UserRoles userRoles) {
+    public User(Long id, String username, String email, String firstName, String lastName, String password, LocalDateTime created, LocalDateTime last_update, boolean active, UserRoles userRoles, String uuidToken) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -50,6 +51,7 @@ public class User {
         this.last_update = last_update;
         this.active = active;
         this.userRoles = userRoles;
+        this.uuidToken = uuidToken;
     }
 
     @Override
@@ -61,10 +63,11 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
-                ", created='" + created + '\'' +
-                ", last_update='" + last_update + '\'' +
+                ", created=" + created +
+                ", last_update=" + last_update +
                 ", active=" + active +
                 ", userRoles=" + userRoles +
+                ", uuidToken='" + uuidToken + '\'' +
                 '}';
     }
 }

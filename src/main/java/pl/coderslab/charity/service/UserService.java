@@ -10,7 +10,9 @@ public interface UserService {
 
     void add(User user);
 
-    void edit(User user);
+    void addAsAdmin(User user);
+
+    void edit(User userData, User userUpdate);
 
     User getByEmail(String email);
 

@@ -37,11 +37,7 @@ public class AdminFormController {
 
     @PostMapping("adminslist/add")
     public String adminAdditionDone(User user){
-        user.setUserRoles(userRolesService.getAllUserRoles().get(1));
-        user.setCreated(LocalDateTime.now());
-        user.setLast_update(LocalDateTime.now());
-        user.setActive(true);
-        userService.add(user);
+        userService.addAsAdmin(user);
         return "redirect:/admin/adminslist";
     }
 
@@ -57,14 +53,7 @@ public class AdminFormController {
     @PostMapping("adminslist/edit")
     public String adminEditDone(User userInput){
         User user = userService.getById(userInput.getId());
-        //TODO: email and pw to be changed via e-mail, username should not be in the app
-//        user.setUsername(user.getUsername());
-//        user.setEmail(userInput.getEmail());
-        user.setFirstName(userInput.getFirstName());
-        user.setLastName(userInput.getLastName());
-//        user.setPassword(userInput.getPassword());
-        user.setLast_update(LocalDateTime.now());
-        userService.edit(user);
+        userService.edit(user,userInput);
         return "redirect:/admin/adminslist";
     }
 
